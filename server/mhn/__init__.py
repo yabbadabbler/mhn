@@ -144,6 +144,7 @@ def create_clean_db():
             ['Ubuntu - Suricata', '../scripts/deploy_suricata.sh'],
             ['Ubuntu - Glastopf', '../scripts/deploy_glastopf.sh'],
             ['Ubuntu - ElasticHoney', '../scripts/deploy_elastichoney.sh'],
+            ['Ubuntu/Docker - ElasticHoney', '../scripts/deploy_elastichoney_docker.sh'],
             ['Ubuntu - Amun', '../scripts/deploy_amun.sh'],
             ['Ubuntu - Snort', '../scripts/deploy_snort.sh'],
             ['Ubuntu - Cowrie', '../scripts/deploy_cowrie.sh'],
