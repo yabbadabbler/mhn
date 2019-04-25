@@ -5,7 +5,8 @@
 version: 2
 jobs:
   build:
-    machine: true
+    machine:
+      image:  ubuntu-1604:201903-01
       #docker:
 
       # specify the version you desire here
