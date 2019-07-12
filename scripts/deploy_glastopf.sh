@@ -26,14 +26,10 @@ deploy_key=$2
 GLASTOPF_HOME=/opt/glastopf
 
 # Update repository
-apt-get update
+apt update
 
 # Install Prerequisites
-if [ "$(lsb_release -r -s)" == "14.04" ]; then
-    apt-get install -y python2.7 python-openssl python-gevent libevent-dev python2.7-dev build-essential make python-chardet python-requests python-sqlalchemy python-lxml python-beautifulsoup mongodb python-pip python-dev python-setuptools g++ git php5 php5-dev liblapack-dev gfortran libmysqlclient-dev libxml2-dev libxslt-dev supervisor
-else
-    apt-get install -y apache2 python2.7 python-openssl python-gevent libevent-dev python2.7-dev build-essential make python-chardet python-requests python-sqlalchemy python-lxml python-beautifulsoup mongodb python-pip python-dev python-setuptools g++ git php php-dev liblapack-dev gfortran libmysqlclient-dev libxml2-dev libxslt-dev supervisor
-fi
+apt install -y apache2 python2.7 python-openssl python-gevent libevent-dev python2.7-dev build-essential make python-chardet python-requests python-sqlalchemy python-lxml python-beautifulsoup mongodb python-pip python-dev python-setuptools g++ git php php-dev liblapack-dev gfortran libmysqlclient-dev libxml2-dev libxslt-dev supervisor
 
 pip install -e git+https://github.com/threatstream/hpfeeds.git#egg=hpfeeds-dev
 
@@ -45,14 +41,8 @@ phpize
 ./configure --enable-bfr
 make && make install
 
-# Updated php.ini to add bfr.so
-if [ "$(lsb_release -r -s)" == "14.04" ]; then
-    BFR_BUILD_OUTPUT=`find /usr/lib/php5/ -type f -name "bfr.so" | awk -F"/" '{print $5}'`
-    echo "zend_extension = /usr/lib/php5/$BFR_BUILD_OUTPUT/bfr.so" >> /etc/php5/apache2/php.ini
-else
-    BFR_BUILD_OUTPUT=`find /usr/lib/php/ -type f -name "bfr.so" | awk -F"/" '{print $5}'`
-    echo "zend_extension = /usr/lib/php/$BFR_BUILD_OUTPUT/bfr.so" >> /etc/php/7.0/fpm/php.ini
-fi
+BFR_BUILD_OUTPUT=`find /usr/lib/php/ -type f -name "bfr.so" | awk -F"/" '{print $5}'`
+echo "zend_extension = /usr/lib/php/$BFR_BUILD_OUTPUT/bfr.so" >> /etc/php/7.0/fpm/php.ini
 
 # Stop apache2 and disable it from start up
 service apache2 stop
