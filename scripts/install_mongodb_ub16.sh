@@ -28,5 +28,4 @@ WantedBy=multi-user.target
 EOF
 
 systemctl start mongodb
-systemctl status mongodb
 systemctl enable mongodb

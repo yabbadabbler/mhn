@@ -1,16 +1,14 @@
 #!/bin/bash
 
 # Install MongoDB for the appropriate OS and version.
-# Supports Ubuntu 14, 16, 18 and RHEL/CentOS 6.9
+# Supports Ubuntu 16, 18 and RHEL/CentOS 6.9
 
 set -e
 set -x
 
 if [ -f /etc/debian_version ]; then
 
-    if [ "$(lsb_release -r -s)" == "14.04" ]; then
-        ./install_mongodb_ub14.sh
-    elif [ "$(lsb_release -r -s)" == "16.04" ]; then
+    if [ "$(lsb_release -r -s)" == "16.04" ]; then
         ./install_mongodb_ub16.sh
     elif [ "$(lsb_release -r -s)" == "18.04" ]; then
         ./install_mongodb_ub18.sh
