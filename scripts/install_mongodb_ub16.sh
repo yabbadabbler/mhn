@@ -12,6 +12,11 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongod
 apt-get update
 apt-get install -y mongodb-org
 
+if [ ! -f /etc/mongod.conf ] ; then  
+  echo "/etc/mongod.conf not found"
+  touch /etc/monogod.conf
+fi
+
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 
 cat > /etc/systemd/system/mongodb.service <<EOF
@@ -27,6 +32,6 @@ ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
 WantedBy=multi-user.target
 EOF
 
-service mongodb start
-service mongodb status
-service mongodb enable
+sudo service mongodb start
+#sudo service mongodb status
+#sudo service mongodb enable
