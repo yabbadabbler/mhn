@@ -33,5 +33,5 @@ WantedBy=multi-user.target
 EOF
 
 sudo service mongodb start
-#sudo service mongodb status
-#sudo service mongodb enable
+sudo service mongodb status
+sudo service mongodb enable
