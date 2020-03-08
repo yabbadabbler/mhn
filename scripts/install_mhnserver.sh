@@ -148,29 +148,6 @@ autorestart=true
 startsecs=10
 EOF
 
-MHN_UUID=`python -c 'import uuid;print str(uuid.uuid4())'`
-SECRET=`python -c 'import uuid;print str(uuid.uuid4()).replace("-","")'`
-/opt/hpfeeds/env/bin/python /opt/hpfeeds/broker/add_user.py "collector" "$SECRET" "" "geoloc.events"
-
-cat > $MHN_HOME/server/collector.json <<EOF
-{
-  "IDENT": "collector",
-  "SECRET": "$SECRET",
-  "MHN_UUID": "$MHN_UUID"
-}
-EOF
-
-cat > /etc/supervisor/conf.d/mhn-collector.conf <<EOF 
-[program:mhn-collector]
-command=$MHN_HOME/env/bin/python collector_v2.py collector.json
-directory=$MHN_HOME/server
-stdout_logfile=/var/log/mhn/mhn-collector.log
-stderr_logfile=/var/log/mhn/mhn-collector.err
-autostart=true
-autorestart=true
-startsecs=10
-EOF
-
 touch $MHN_HOME/server/mhn.log
 chown $NGINXUG -R $MHN_HOME/server/*
 

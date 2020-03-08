@@ -5,6 +5,8 @@ set -x
 
 . /opt/hpfeeds/env/bin/activate
 
+# Util script for updating hpfeeds channels etc.
+# TODO: Update channels as they are out of date and missing agave/drupot
 
 # update the hpfeeds channels used by mnemosyne
 IDENT="mnemosyne"
@@ -29,8 +31,8 @@ else
     echo "Warning: no SECRET found for IDENT=$IDENT, not updating hpfeeds user."
 fi
 
-# update the hpfeeds channels used by honeymap and collector
-for IDENT in "honeymap" "collector";
+# update the hpfeeds channels used by honeymap
+for IDENT in "honeymap";
 do
     SECRET=`python /opt/hpfeeds/broker/get_secret.py $IDENT`
     PUBLISH_CHAN=""

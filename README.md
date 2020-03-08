@@ -90,7 +90,6 @@ services running on your MHN server.  See below for checking these.
     hpfeeds-broker                   RUNNING    pid 10089, uptime 0:36:42
     mhn-celery-beat                  RUNNING    pid 29909, uptime 0:18:41
     mhn-celery-worker                RUNNING    pid 29910, uptime 0:18:41
-    mhn-collector                    RUNNING    pid 7872,  uptime 0:18:41
     mhn-uwsgi                        RUNNING    pid 29911, uptime 0:18:41
     mnemosyne                        RUNNING    pid 28173, uptime 0:30:08
 
@@ -177,7 +176,7 @@ log should be monitored by the SplunkUniversalForwarder.
 This will log the events as CEF to /var/log/mhn-arcsight.log
 
 ## Data	
-*NOTICE* **This section is out of date. Community data is not collected by Anomali although MHN still attempts to send this data to Anomali servers.**	
+*NOTICE* **Community data is not collected by Anomali although old MHN installs still attempt to send this data to Anomali servers.**	
 
 The MHN server reports anonymized attack data back to Anomali, Inc. (formerly	
 known as ThreatStream). If you are interested in viewing this data, get details	
